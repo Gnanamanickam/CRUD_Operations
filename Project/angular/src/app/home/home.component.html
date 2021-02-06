@@ -1,0 +1,34 @@
+<!-- Side Bar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card-2" style="z-index:3;width:250px;" id="mySidebar">
+
+	<a class="w3-bar-item w3-button" [ngClass]="{'w3-teal': (active == '/')}" routerLink="/">  Publication List</a>
+	<a class="w3-bar-item w3-button" routerLink="/add"  [ngClass]="{'w3-teal': (active == '/add')}">  Add new Publication</a>
+</nav>
+
+<!-- container -->
+<div style="margin-left:250px;">
+<div class="container"
+		<h3>Publication List</h3>
+	</div>
+	<div class="">
+		<table class="table table-striped">
+			<tr>
+				<th> Sr. No.</th>
+				<th> Student ID </th>
+                <th> Publications </th>
+                <th> Year </th>
+                <th> Update </th>
+               <th>Delete</th> 
+			</tr>
+			<tr *ngFor="let publication of publications; let i = index" >
+				<td>{{i +1}}</td>
+				<td class="pointer">{{publication.student_id}}</td>
+				<td class="pointer">{{publication.Publication}}</td>
+				<td class="pointer">{{publication.year}}</td>
+				<td><button [routerLink]="['create', i]" class="btn btn-danger">Update</button></td>
+				<td><button (click)="deletePublication(i);" class="btn btn-primary">Delete</button></td>
+			</tr>
+		</table>
+	</div>
+</div>
+</div>

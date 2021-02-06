@@ -2,6 +2,7 @@ package com.crud.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,6 +72,12 @@ public class ProjectController {
 				for(int i=0; i < publications.size(); i++) {
 					PublicationEntity publicationEntity = new PublicationEntity();
 					publicationEntity.setId(publications.get(i).getId());
+					Optional<StudentEntity> result = studentRepository.findById(publications.get(i).getId());
+					if ( !result.isPresent()) {
+						StudentEntity se = new StudentEntity();
+						se.setId(publications.get(i).getId());
+						studentRepository.save(se);
+					}
 					publicationEntity.setStudent_id(publications.get(i).getStudent_id());
 					publicationEntity.setTitle(publications.get(i).getTitle());
 					publicationEntity.setYear(publications.get(i).getYear());

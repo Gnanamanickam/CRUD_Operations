@@ -63,4 +63,13 @@ export class AppComponent implements OnInit {
       var tempSet = JSON.stringify(data);
     }, error => console.log(error));
   }
+
+  static emailValidator(control: { value: string; }) {
+		if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
+			return null;
+		} else {
+			return { 'invalidEmailAddress': true };
+		}
+	}
+  
 }
