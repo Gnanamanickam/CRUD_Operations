@@ -67,7 +67,7 @@ public class ProjectController {
 
 
 		@PostMapping("/createPublication")
-		public ResponseEntity<String> createPublication(@RequestBody List<PublicationEntity> publications) {
+		public ResponseEntity createPublication(@RequestBody List<PublicationEntity> publications) {
 			try {
 				for(int i=0; i < publications.size(); i++) {
 					PublicationEntity publicationEntity = new PublicationEntity();
@@ -83,7 +83,17 @@ public class ProjectController {
 					publicationEntity.setYear(publications.get(i).getYear());
 				publicationRepository.save(publicationEntity);
 				}
-				return new ResponseEntity<>("Successfully Created", HttpStatus.CREATED);
+				return new ResponseEntity<>(HttpStatus.CREATED);
+			} catch (Exception e) {
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+		
+		@PostMapping("/createPublic")
+		public ResponseEntity createPublic(@RequestBody PublicationEntity publications) {
+			try {
+				publicationRepository.save(publications);
+				return new ResponseEntity<>(HttpStatus.CREATED);
 			} catch (Exception e) {
 				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			}

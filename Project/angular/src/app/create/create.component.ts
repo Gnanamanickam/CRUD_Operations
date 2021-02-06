@@ -47,7 +47,7 @@ createStudentDetails = new FormGroup({
   }
 
   public CreatePublication() {
-    this.apiService.postDetails("api/createPublication" , this.createPublications)
+    this.apiService.postDetails("api/createPublic" , this.createPublications.value)
     .subscribe((data) => {
       var tempSet = JSON.stringify(data);
     }, error => console.log(error));
