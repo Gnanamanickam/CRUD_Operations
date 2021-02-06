@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpServiceService } from 'src/service/http-service.service'
-
+import { Student } from 'src/shared/student'
+import { Publication } from 'src/shared/publication'
 
 @Component({
   selector: 'app-root',
