@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from 'src/service/http-service.service'
 import { Student } from 'src/shared/student'
 import { Publication } from 'src/shared/publication'
@@ -8,7 +8,7 @@ import { Publication } from 'src/shared/publication'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular';
   publications: any;
   studentsList: any;
@@ -25,8 +25,7 @@ export class AppComponent {
       .subscribe((data) => {
         var tempSet = JSON.stringify(data);
         this.publications = JSON.parse(tempSet);
-      }
-      )
+      }, error => console.log(error));
   }
 
   public getStudentDetails() {
@@ -34,39 +33,34 @@ export class AppComponent {
     .subscribe((data) => {
       var tempSet = JSON.stringify(data);
       this.studentsList = JSON.parse(tempSet);
-    }
-    )
+    }, error => console.log(error));
   }
 
   public updatePublicationDetail(value: any) {
     this.apiService.postDetails("api/UpdatePublication" , value)
     .subscribe((data) => {
       var tempSet = JSON.stringify(data);
-    }
-    )
+    }, error => console.log(error));
   }
 
   public CreatePublication(value: any) {
     this.apiService.postDetails("api/createPublication" , value)
     .subscribe((data) => {
       var tempSet = JSON.stringify(data);
-    }
-    )
+    }, error => console.log(error));
   }
 
   public deletePublication(id: any) {
     this.apiService.getDetails("api/publication/" + id)
     .subscribe((data) => {
       var tempSet = JSON.stringify(data);
-    }
-    )
+    }, error => console.log(error));
   }
 
   public deleteAllPublication() {
     this.apiService.getDetails("api/deletePublications")
     .subscribe((data) => {
       var tempSet = JSON.stringify(data);
-    }
-    )
+    }, error => console.log(error));
   }
 }
