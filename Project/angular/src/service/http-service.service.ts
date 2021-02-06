@@ -18,13 +18,5 @@ export class HttpServiceService {
     return this.http.post(this.localUrl+param, data);
   }
 
-  public putDetails(param: any,data: any) {
-    return this.http.put(this.localUrl+param, data);
-  }
-
-  public deleteDetails(param: any,data: any) {
-    return this.http.delete(this.localUrl+param, data);
-  }
-
 
 }
